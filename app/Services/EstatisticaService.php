@@ -17,13 +17,12 @@ class EstatisticaService
 
     public function calcular(): array
     {
-        // Recupera transações do último minuto
+ 
         $transacoes = $this->transacaoModel->transacoesUltimoMinuto();
         
-        // Extrai os valores das transações
         $valores = array_column($transacoes, 'valor');
 
-        // Se não houver transações, retorna valores padrão
+   
         if (empty($valores)) {
             return [
                 'sum' => 0,
@@ -34,7 +33,7 @@ class EstatisticaService
             ];
         }
 
-        // Calcula as estatísticas
+
         return [
             'sum' => array_sum($valores),
             'avg' => round(array_sum($valores) / count($valores), 2),
